@@ -225,12 +225,3 @@ MIT License (Recommended — adjust if needed)
 
 Contributions are welcome. Fork the repository, improve the UI, optimize performance, or extend functionality.
 
----
-
-If you want, I can now generate:
-
-* A shorter SEO-focused README version
-* A professional enterprise-style README
-* A browser extension version description
-* A landing page sales copy version
-* Or GitHub tags optimized for discoverability
