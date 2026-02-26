@@ -224,4 +224,3 @@ MIT License (Recommended — adjust if needed)
 ## 🤝 Contributing
 
 Contributions are welcome. Fork the repository, improve the UI, optimize performance, or extend functionality.
-
