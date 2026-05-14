@@ -7,8 +7,10 @@
     <!-- Primary Meta Tags -->
     <title>Multi Link Opener | Bulk URL Opener Tool to Open Multiple Links at Once</title>
     <meta name="title" content="Multi Link Opener | Bulk URL Opener Tool to Open Multiple Links at Once">
-    <meta name="description" content="Multi Link Opener is a free bulk URL opener that lets you open multiple links at once or sequentially with adjustable delay. Validate URLs, track progress, and automate tab opening directly in your browser.">
-    <meta name="keywords" content="multi link opener, bulk url opener, open multiple links, batch link opener, open urls at once, sequential link opener, browser productivity tool, javascript link opener">
+    <meta name="description"
+        content="Multi Link Opener is a free bulk URL opener that lets you open multiple links at once or sequentially with adjustable delay. Validate URLs, track progress, and automate tab opening directly in your browser.">
+    <meta name="keywords"
+        content="multi link opener, bulk url opener, open multiple links, batch link opener, open urls at once, sequential link opener, browser productivity tool, javascript link opener">
     <meta name="author" content="Your Name or Brand">
     <meta name="robots" content="index, follow">
     <meta name="language" content="English">
@@ -20,17 +22,128 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Multi Link Opener – Open Multiple URLs Instantly or Sequentially">
-    <meta property="og:description" content="Open multiple links at once with adjustable delay, validation, and real-time progress tracking. A lightweight browser-based bulk URL opener tool.">
+    <meta property="og:description"
+        content="Open multiple links at once with adjustable delay, validation, and real-time progress tracking. A lightweight browser-based bulk URL opener tool.">
     <meta property="og:url" content="https://yourdomain.com/">
     <meta property="og:site_name" content="Multi Link Opener">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Multi Link Opener – Bulk URL Opening Tool">
-    <meta name="twitter:description" content="Free online tool to open multiple links at once or one by one with delay control and URL validation.">
+    <meta name="twitter:description"
+        content="Free online tool to open multiple links at once or one by one with delay control and URL validation.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="./css/style.css">
 </head>
 
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-external-link-alt"></i> Multi-Link Opener</h1>
+            <p class="subtitle">Open multiple links one by one with adjustable delay</p>
+        </header>
+
+        <main class="main-content">
+            <section class="input-section">
+                <div class="input-header">
+                    <h2>Enter Your Links (one per line)</h2>
+                    <div class="control-buttons">
+                        <button class="control-btn example-btn" id="exampleBtn">
+                            <i class="fas fa-list-alt"></i> Load Example
+                        </button>
+                        <button class="control-btn clear-btn" id="clearBtn">
+                            <i class="fas fa-trash-alt"></i> Clear All
+                        </button>
+                    </div>
+                </div>
+
+                <textarea id="linksInput" placeholder="
+                    Paste your links here, one per line...
+                    Example:
+                    https://www.munthasir.com
+                    https://www.facebook.com/munthasir.devs
+                    https://github.com/munthasirdevs
+                    https://www.instagram.com/munthasir.devs
+                    https://www.linkedin.com/in/munthasir-devs/">
+                </textarea>
+                <div class="instructions">
+                    <i class="fas fa-info-circle"></i> Each link will be automatically validated. Links will open one by
+                    one with a delay between each.
+                </div>
+            </section>
+
+            <div class="settings-panel">
+                <div class="setting-group">
+                    <label for="delaySlider"><i class="fas fa-clock"></i> Delay between links (ms)</label>
+                    <div class="delay-control">
+                        <input type="range" id="delaySlider" min="500" max="5000" step="100" value="1500">
+                        <span class="delay-value" id="delayValue">1500</span>
+                    </div>
+                </div>
+
+                <div class="setting-group">
+                    <label><i class="fas fa-external-link-alt"></i> Opening Mode</label>
+                    <div style="display: flex; gap: 10px;">
+                        <button class="control-btn active-mode" id="sequentialBtn" style="background: #00dbde;">
+                            <i class="fas fa-play-circle"></i> Sequential
+                        </button>
+                        <button class="control-btn" id="allAtOnceBtn" style="background: #2a2a4a;">
+                            <i class="fas fa-bolt"></i> All at Once
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="controls">
+                <button class="open-btn" id="openBtn">
+                    <i class="fas fa-external-link-alt"></i> Open Links One By One
+                </button>
+            </div>
+
+            <div class="progress-container" id="progressContainer">
+                <div class="progress-header">
+                    <h3><i class="fas fa-tasks"></i> Opening Progress</h3>
+                    <button class="control-btn" id="stopBtn" style="background: #ff4757; display: none;">
+                        <i class="fas fa-stop-circle"></i> Stop
+                    </button>
+                </div>
+
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+
+                <div class="progress-text" id="progressText">0 of 0 links opened</div>
+
+                <div class="current-opening" id="currentOpening" style="display: none;">
+                    <i class="fas fa-external-link-alt fa-spin"></i>
+                    <span id="currentLinkText">Opening: https://example.com</span>
+                </div>
+            </div>
+
+            <section class="result-section">
+                <div class="result-header">
+                    <h3>Detected Links</h3>
+                    <div class="link-counter">
+                        Valid: <span id="validCount">0</span> | Total: <span id="totalCount">0</span>
+                    </div>
+                </div>
+
+                <div class="links-list" id="linksList">
+                    <!-- Links will appear here dynamically -->
+                    <div class="empty-state">
+                        No links detected yet. Start typing or paste your links above.
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p>Links open one by one with adjustable delay. Make sure to allow pop-ups for this site.</p>
+            <p>Made with <i class="fas fa-heart" style="color:#ff4757;"></i> for efficient browsing</p>
+        </footer>
+    </div>
+</body>
+
+</html>
